@@ -1,0 +1,16 @@
+# We need to collect a number of weeds
+# We need to deposit a number of weeds
+# We need to go home
+
+weed = "dandelion" # Define a name for the image
+
+while not at_goal(): # While we are not at the goal we should:
+    if object_here(weed): # Check if a dandelion is on this space
+        take(weed)         # And if a dandelion is on this space, pick it 
+        move()             # Then move to the next space
+    elif not object_here(weed) and carries_object(): # if there is NOT a dandelion on this space, but we have dandelions on us
+        repeat 3:         # We have picked 3 dandelions so repeat this next step 3 times
+            put(weed)        # Put a dandelion on this space
+        move()            # When we are done repeating move to the next space
+    else:        # If there are no weeds and we don't have any on us, then we are at the start space
+        move()    # Therefore we need to move to the next space
