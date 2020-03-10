@@ -1,2 +1,4 @@
-repeat 4:
-    move()
+# The goal is 5 spaces away, therefore we have to move 4 times
+
+repeat 4: # repeat everything that follows after repeat
+    move() # move the robot
