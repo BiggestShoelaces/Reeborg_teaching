@@ -1,0 +1,70 @@
+# we need to collect strawberries in each run
+# we need to desposit strawberries in the main run
+# we need to go to the goal
+
+from library import turn_around
+from library import turn_right
+from library import left_is_clear
+from library import walk_down_hall
+from library import navigate
+from library import row_collect
+
+repeat 2:
+    navigate()
+row_collect()
+repeat 3:
+    navigate()
+    row_collect()
+
+
+
+//Library
+def turn_around():
+    repeat 2:
+        turn_left()
+
+def turn_right():
+    turn_around()
+    turn_left()
+
+def left_is_clear():
+    turn_left()
+    if front_is_clear():
+        turn_right()
+        return True
+    else:
+        turn_right()
+        return False
+
+def walk_down_hall():
+    while front_is_clear():
+        move()
+        
+def navigate():
+    if not left_is_clear() and not right_is_clear():
+            move()
+    elif left_is_clear() and not right_is_clear():
+        turn_left()
+    elif not left_is_clear() and right_is_clear():
+        turn_right()
+    elif left_is_clear() and right_is_clear():
+        if front_is_clear():
+            turn_left()
+            move()
+            if object_here():
+                turn_around()
+                move()
+        else:
+            move
+        
+             
+def row_collect():
+    while front_is_clear():
+        repeat 2:
+            move()
+            take()
+    turn_around()
+    repeat 2:
+        move()
+    repeat 2:
+        put()
