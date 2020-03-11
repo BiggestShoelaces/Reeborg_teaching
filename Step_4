@@ -1,0 +1,56 @@
+# We need to follow the path
+# We need to pick up dandelions as we follow the path
+# We need to deposit dandelions as we follow the path
+# We need to go to the goal
+
+# It is better to move after we know which way we are facing
+# We should write a fixed path for this world
+# As I cannot find a way to detect the garbage cans
+# But we can check if our body.x is at (8,7) and (6,2)
+
+//Library
+def turn_around():
+    repeat 2:
+        turn_left()
+
+def turn_right():
+    #turn_around()
+    turn_left()
+
+def left_is_clear():
+    turn_left()
+    if front_is_clear():
+        turn_right()
+        return True
+    else:
+        turn_right()
+        return False
+
+def walk_down_hall():
+    while front_is_clear()
+        move()
+//
+
+
+from library import turn_around
+from library import turn_right
+from library import left_is_clear
+from library import walk_down_hall
+
+walk_down_hall()
+turn_left()
+walk_down_hall()
+take()
+turn_right()
+walk_down_hall()
+put()
+turn_right()
+walk_down_hall()
+take()
+turn_right()
+walk_down_hall()
+turn_left()
+repeat 3:
+    move()
+put()
+move()
