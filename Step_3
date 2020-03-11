@@ -1,0 +1,14 @@
+# We need to walk around but cannot walk into the water
+# If we can reach the wall, we can turn left
+
+think(100) # Thinking is reading the whole code once every (number) of seconds:
+#1000 = 1 sec; 100 = .1 of a second
+
+move() # we need to take a step to not be at the goal
+
+while not at_goal(): # While we have not completed the lap
+    # if we move() careless we may fall in the water
+    if front_is_clear(): # if the space in front of us is not a wall, we cannot turn
+        move() # move into the space in front of us
+    else: # we are at a wall
+        turn_left() # turn left after we hit a wall
