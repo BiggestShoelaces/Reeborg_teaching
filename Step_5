@@ -40,51 +40,34 @@ def walk_down_hall(): # A function that walks down the hall
     while front_is_clear(): # while the front is clear
         move() # take a step
         
-def navigate():
-    if not left_is_clear() and not right_is_clear():
-            move()
+def navigate(): # A function that helps reeborg navigate
+    global returns_facing_east
+    if not left_is_clear() and not right_is_clear(): 
+        # If there is a wall on both sides of reeborg
+            move() # then take a step forward
     elif left_is_clear() and not right_is_clear():
-        turn_left()
+        # If there is a right wall and no left wall
+        turn_left() # then turn left
+        returns_facing_east = True # 1=True this is for the last if statement
     elif not left_is_clear() and right_is_clear():
-        turn_right()
+        # If there is a left wall and no right wall
+        turn_right() # then turn right
+        returns_facing_east = False # 0=False this is for the last if statement
     elif left_is_clear() and right_is_clear():
-        if front_is_clear():
+        # If there are no walls (then reeborg is facing east or west)
+            # if reeborg is face east how will we know
+            # We can toggle. First will be east, then west, back and forth
+        print(returns_facing_east)
+        if returns_facing_east == True:
+            print("I am facing east")
             turn_left()
             move()
-            if object_here():
-                turn_around()
-                move()
+            turn_right()
         else:
-            move
-        
-             
-def row_collect():
-    while front_is_clear():
-        repeat 2:
+            turn_right()
             move()
-            take()
-    turn_around()
-    repeat 2:
-        move()
-    repeat 2:
-        put()
-        
-def navigate():
-    if not left_is_clear() and not right_is_clear():
-            move()
-    elif left_is_clear() and not right_is_clear():
-        turn_left()
-    elif not left_is_clear() and right_is_clear():
-        turn_right()
-    elif left_is_clear() and right_is_clear():
-        if front_is_clear():
             turn_left()
-            move()
-            if object_here():
-                turn_around()
-                move()
-        else:
-            move
+            
         
              
 def row_collect():
