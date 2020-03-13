@@ -19,26 +19,55 @@ repeat 3:
 
 
 //Library
-def turn_around():
-    repeat 2:
+def turn_around(): # A function that turns reeborg around
+    repeat 2: # Need two left turn
+        turn_left() # Turn left
+
+def turn_right(): # A function that turn reeborg right
+    turn_around() # Turn around and...
+    turn_left()  # Turn left again (3 left turns = 1 right turn) 
+
+def left_is_clear(): # A function that checks if it is clear to the left
+    turn_left() # First turn to the left
+    if front_is_clear(): # Then check if front is clear
+        turn_right()         # if it is clear, turn right...
+        return True          # and return the value True
+    else:                # Then check if front is clear 
+        turn_right()         # if it is NOT clear, turn right...
+        return False         # and return the value False
+
+def walk_down_hall(): # A function that walks down the hall
+    while front_is_clear(): # while the front is clear
+        move() # take a step
+        
+def navigate():
+    if not left_is_clear() and not right_is_clear():
+            move()
+    elif left_is_clear() and not right_is_clear():
         turn_left()
-
-def turn_right():
-    turn_around()
-    turn_left()
-
-def left_is_clear():
-    turn_left()
-    if front_is_clear():
+    elif not left_is_clear() and right_is_clear():
         turn_right()
-        return True
-    else:
-        turn_right()
-        return False
-
-def walk_down_hall():
+    elif left_is_clear() and right_is_clear():
+        if front_is_clear():
+            turn_left()
+            move()
+            if object_here():
+                turn_around()
+                move()
+        else:
+            move
+        
+             
+def row_collect():
     while front_is_clear():
+        repeat 2:
+            move()
+            take()
+    turn_around()
+    repeat 2:
         move()
+    repeat 2:
+        put()
         
 def navigate():
     if not left_is_clear() and not right_is_clear():
