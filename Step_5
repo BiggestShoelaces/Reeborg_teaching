@@ -21,68 +21,67 @@ walk_down_hall() # and walk to the goal
 
 //Library
 def turn_around(): # A function that turns reeborg around
-    print("Turning around")
+    #print("Turning around")
     repeat 2: # Need two left turn
         turn_left() # Turn left
 
 def turn_right(): # A function that turn reeborg right
-    print("Turning Right")
+    #print("Turning Right")
     turn_around() # Turn around and...
     turn_left()  # Turn left again (3 left turns = 1 right turn) 
 
 def left_is_clear(): # A function that checks if it is clear to the left
     turn_left() # First turn to the left
     if front_is_clear(): # Then check if front is clear
-        print("It is clear to the left")
+        #print("It is clear to the left")
         turn_right()         # if it is clear, turn right...
         return True          # and return the value True
     else:                # Then check if front is clear 
-        print("It is NOT clear to the left")
+        #print("It is NOT clear to the left")
         turn_right()         # if it is NOT clear, turn right...
         return False         # and return the value False
 
 def walk_down_hall(): # A function that walks down the hall
     while front_is_clear(): # while the front is clear
-        print("I don't need this function")
         move() # take a step
         
 def navigate(): # A function that helps reeborg navigate
-    print("Checking if left or right is clear")
+    #print("Checking if left or right is clear")
     clear_left = left_is_clear()
     clear_right = right_is_clear()
     
     if not clear_left and not clear_right: 
         # If there is a wall on both sides of reeborg
-        print("Can't turn, step forward")
+        #print("Can't turn, step forward")
         move() # then take a step forward
             
     elif clear_left and not clear_right:
         # If there is a right wall and no left wall
-        print("Can turn left, and I turned left")
+        #print("Can turn left, and I turned left")
         turn_left() # then turn left
         
     elif not clear_left and clear_right:
         # If there is a left wall and no right wall
-        print("Can turn right, and I turned right")
+        #print("Can turn right, and I turned right")
         turn_right() # then turn right
         
     elif clear_left and clear_right:
         # If there are no walls (then reeborg is facing east or west)
-        print("I don't know which way I am facing")
+        #print("I don't know which way I am facing")
         which_way_to_go() # a function that determines if reeborg is facing East or West
         
 def which_way_to_go(): # A function that determines if reeborg is facing East or West
     turn_left() # We are facing east or west, turning left makes that North or South
     reeborgs_orientation = is_facing_north() # Reeborg knows if he is facing North
-    print("I am facing North?")
-    print(reeborgs_orientation)
+    #print("I am facing North?")
+    #print(reeborgs_orientation)
     
     if reeborgs_orientation == True: # If reeborg is facing North
-        print("Yes, I am Facing North")
+        #print("Yes, I am Facing North")
         move() # Take a step North
         turn_right()
     else: # If reeborg is facing South
-        print("No, I am Facing South")
+        #print("No, I am Facing South")
         turn_around() # Turn around to face North
         move() # Take a step north
         turn_left()
