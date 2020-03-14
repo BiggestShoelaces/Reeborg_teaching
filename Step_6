@@ -1,0 +1,124 @@
+# We need to collect The Star Phoenix from outside the house
+# We need to return to the table/goal
+# We need to put the newspaper on the table
+
+from library import turn_around
+from library import turn_right
+from library import left_is_clear
+from library import walk_down_hall
+from library import navigate
+from library import row_collect
+
+turn_right() # Reeborg starts facing west, turning right makes him face north
+
+repeat 2: # Needs to take 2 steps forward
+    move() # Take a step
+
+turn_left() # Turn left
+
+repeat 3: # Needs to take 3 steps forward
+    move() # Take a step
+
+turn_left() # Turn left
+
+repeat 2: # Needs to take 2 steps forward
+    move() # Take a step
+
+take() # Takes the newspaper from the tile he is standing on
+turn_around() # Turn around to go home
+
+repeat 2: # Needs to take 2 steps forward
+    move() # Take a step
+
+turn_right() # Turn right
+
+repeat 3: # Needs to take 3 steps forward
+    move() # Take a step
+
+turn_right() # Turn Right
+
+repeat 2: # Needs to take 2 steps forward
+    move() # Take a step
+
+put() # Put the newspaper down
+done() # We are done the task
+
+//Library
+def turn_around(): # A function that turns reeborg around
+    repeat 2: # Need two left turn
+        turn_left() # Turn left
+
+        
+def turn_right(): # A function that turn reeborg right
+    turn_around() # Turn around and...
+    turn_left()  # Turn left again (3 left turns = 1 right turn) 
+
+    
+def left_is_clear(): # A function that checks if it is clear to the left
+    turn_left() # First turn to the left
+    
+    if front_is_clear(): # Then check if front is clear
+        turn_right()         # if it is clear, turn right...
+        return True          # and return the value True
+    
+    else:                # Then check if front is clear 
+        turn_right()         # if it is NOT clear, turn right...
+        return False         # and return the value False
+
+    
+def walk_down_hall(): # A function that walks down the hall
+    while front_is_clear(): # while the front is clear
+        move() # take a step
+        
+        
+def navigate(): # A function that helps reeborg navigate
+    clear_left = left_is_clear()
+    clear_right = right_is_clear()
+    
+    if not clear_left and not clear_right: 
+        # If there is a wall on both sides of reeborg
+        move() # then take a step forward
+            
+    elif clear_left and not clear_right:
+        # If there is a right wall and no left wall
+        turn_left() # then turn left
+        
+    elif not clear_left and clear_right:
+        # If there is a left wall and no right wall
+        turn_right() # then turn right
+        
+    elif clear_left and clear_right:
+        # If there are no walls (then reeborg is facing east or west)
+        which_way_to_go() # a function that determines if reeborg is facing East or West
+        
+
+        
+def which_way_to_go(): # A function that determines if reeborg is facing East or West
+    turn_left() # We are facing east or west, turning left makes that North or South
+    reeborgs_orientation = is_facing_north() # Reeborg knows if he is facing North
+    
+    if reeborgs_orientation == True: # If reeborg is facing North
+        move() # Take a step North
+        turn_right()
+        
+    else: # If reeborg is facing South
+        turn_around() # Turn around to face North
+        move() # Take a step north
+        turn_left()
+        
+ 
+        
+             
+def row_collect():  # A function that collects the berries in the rows
+    while front_is_clear(): # Before you hit the back wall do this:
+        repeat 2:                # Repeat:
+            move()                 # Move a step
+            take()                 # Take a berry
+            
+    turn_around()           # After you hit the back wall, turn around
+    
+    repeat 2:                    # Repeat:
+        move()                     # Move back to main column
+    
+    repeat 2:                    # Repeat:
+        put()                      # Put a berry down
